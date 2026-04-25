@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dreamy Flowers</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    animation: backgroundChange 20s infinite alternate ease-in-out;
+}
+
+/* Smooth animated gradient background */
+@keyframes backgroundChange {
+    0%   { background: linear-gradient(to top, #1e3c72, #2a5298); }
+    25%  { background: linear-gradient(to top, #42275a, #734b6d); }
+    50%  { background: linear-gradient(to top, #134e5e, #71b280); }
+    75%  { background: linear-gradient(to top, #ff758c, #ff7eb3); }
+    100% { background: linear-gradient(to top, #2c3e50, #4ca1af); }
+}
+
+/* Blur glass center text */
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    padding: 20px 40px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.4);
+}
+
+/* Flowers */
+.flower {
+    position: absolute;
+    animation: fall linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Sparkling stars */
+.star {
+    position: absolute;
+    color: white;
+    font-size: 15px;
+    animation: sparkle 2s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+    0%,100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">Happy Birthday ✨</div>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <!-- Replace with your own mp3 file -->
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const flowers = ["🌸","🌺","🌼","🌷","💐"];
+const stars = ["✦","✧","✨","★"];
+
+/* Generate falling flowers */
+setInterval(() => {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    flower.style.fontSize = (20 + Math.random() * 40) + "px";
+    flower.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(() => flower.remove(), 12000);
+}, 300);
+
+/* Generate sparkling stars */
+setInterval(() => {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.innerHTML = stars[Math.floor(Math.random() * stars.length)];
+
+    star.style.left = Math.random() * window.innerWidth + "px";
+    star.style.top = Math.random() * window.innerHeight + "px";
+
+    document.body.appendChild(star);
+
+    setTimeout(() => star.remove(), 2000);
+}, 200);
+</script>
+
+</body>
+</html>
